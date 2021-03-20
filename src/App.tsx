@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 
-import { MovieCard } from "./components/MovieCard";
+import MovieCard from "./components/MovieCard";
 
-import SideBar from "./components/SideBar";
-// import { Content } from './components/Content';
+import { Sidebar, Content } from "./components";
 
 import { api } from "./services/api";
 
 import "./styles/global.scss";
-
 import "./styles/sidebar.scss";
 import "./styles/content.scss";
 
@@ -65,7 +63,7 @@ export function App() {
 
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
-      <SideBar
+      <Sidebar
         genres={genres}
         selectedGenreId={selectedGenreId}
         handleClickButton={handleClickButton}
@@ -77,19 +75,7 @@ export function App() {
           </span>
         </header>
 
-        <main>
-          <div className="movies-list">
-            {movies.map((movie) => (
-              <MovieCard
-                key={movie.imdbID}
-                title={movie.Title}
-                poster={movie.Poster}
-                runtime={movie.Runtime}
-                rating={movie.Ratings[0].Value}
-              />
-            ))}
-          </div>
-        </main>
+        <Content movies={movies} />
       </div>
     </div>
   );
